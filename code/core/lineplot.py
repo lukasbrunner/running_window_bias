@@ -89,6 +89,10 @@ def barplot_monthly(ax, exceedances, percentile=None, show_bias=True, yticks=[0,
                    for month in range(1, 13)] 
     month_bins = np.cumsum([0] + daysinmonth)  # needed for alignment of x-axis
 
+    if percentile is not None:
+        ax.axhline(100 - percentile, color='k', ls='--', lw=.5)
+        print('Annual mean bias: {:.1f}%'.format(calc_bias(exceedances, percentile).item()))        
+    
     ax.bar(
         month_bins[:-1], 
         (exceedances > 0).groupby('time.month').mean() * 100, 
@@ -96,10 +100,7 @@ def barplot_monthly(ax, exceedances, percentile=None, show_bias=True, yticks=[0,
         align='edge', 
         color=color,
     )
-    if percentile is not None:
-        ax.axhline(100 - percentile, color='k', ls='--')
-        print('Annual mean bias: {:.1f}%'.format(calc_bias(exceedances, percentile).item()))    
-        
+
     set_xticks(ax)
     ax.set_ylabel('Freq. (%)')
     ax.set_ylim(ylim)

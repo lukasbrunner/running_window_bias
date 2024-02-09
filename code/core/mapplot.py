@@ -22,6 +22,7 @@ plt.rcParams['hatch.linewidth'] = .5
 plt.rcParams['hatch.color'] = 'k'
 
 proj=ccrs.Robinson()
+cm = 1/2.54  # centimeters in inches
 
 
 def antimeridian_pacific(lon: 'xr.DataArray') -> bool:
@@ -114,7 +115,7 @@ def plot_map(da, equator_line=False, add_colorbar=True, levels=np.arange(-30, 6,
     # NOTE: we need to convert to [-180, 180], otherwise cmap.set_bad will not work properly
     da = flip_antimeridian(da)
     
-    fig, ax = plt.subplots(subplot_kw={'projection': proj}, figsize=(8, 4))
+    fig, ax = plt.subplots(subplot_kw={'projection': proj}, figsize=(8*cm, 4*cm))
     map_ = da.plot.pcolormesh(ax=ax, transform=ccrs.PlateCarree(), **kwargs_default)
     if missing_grey:
         map_.cmap.set_bad('grey')
@@ -150,7 +151,7 @@ def plot_boxes(ax, da, boxes, colors='orangered', texts=None, widen=1.5):
             fill=False,
             # facecolor=colors[idx],
             edgecolor=colors[idx],
-            lw=2, 
+            lw=1, 
             closed=True,
             zorder=99,
         )
@@ -174,12 +175,12 @@ def plot_hatching(ax, da, fraction=.8, min_value=0):
         transform=ccrs.PlateCarree(), 
         levels=[.5, 1.5],
         colors='none',
-        hatches=['....'],
+        hatches=['......'],
     )
 
     legend_elements = [
         Patch(facecolor='none', alpha=.99, hatch='....', label='Robust'),
     ]
-    ax.legend(handles=legend_elements, loc=(.86, 0.), handlelength=1, fontsize='small')
+    ax.legend(handles=legend_elements, loc=(.85, 0.), handlelength=.5, fontsize='small')
         
     print('Fraction robust: {:.1%}'.format(spatial_aggregation(da).item()))

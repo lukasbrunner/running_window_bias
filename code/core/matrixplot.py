@@ -18,7 +18,7 @@ from matplotlib.patches import Polygon, Patch
 from core.io_functions import get_filename
 from core.core_functions import spatial_aggregation, calc_bias
 
-savepath = '/mnt/users/staff/lbrunner/Files/Projects/seasonal_extremes/'
+cm = 1/2.54  # centimeters in inches
 
 
 def load_aggregate_data(window, percentile, deseasonalized=False):
@@ -58,8 +58,8 @@ def matrixplot(ds, vmax=None):
     cmap = matplotlib.colors.ListedColormap(colors, "")
     cmap.set_bad('lightgray')
     
-    fig, ax = plt.subplots(figsize=(8, 4))
-    fig.subplots_adjust(left=.1, right=.97, bottom=.12, top=.9)
+    fig, ax = plt.subplots(figsize=(8*cm, 4*cm))
+    fig.subplots_adjust(left=.11, right=.97, bottom=.12, top=.9)
 
     # use this case for labeling (not interesing)
     ds['inhomogeneity'].values[0, 0] = np.nan
@@ -73,7 +73,7 @@ def matrixplot(ds, vmax=None):
         [[.5, 2.5], [.5, 3.5], [1.5, 3.5], [1.5, 2.5]],
         facecolor='none',
         edgecolor='k',
-        lw=2,
+        lw=1,
         closed=True)
     ax.add_patch(poly)
 
@@ -87,19 +87,19 @@ def matrixplot(ds, vmax=None):
         for yy, window in enumerate(ds['window']):
 
             if xx == 0 and yy == 0:
-                ax.text(xx, yy - .35, 'Inhomogeneity', 
+                ax.text(xx, yy - .4, 'Inhomog.', 
                         ha='center', va='top', color='k', fontweight='bold', fontsize='small')
                 ax.text(
-                    xx, yy - .05, '5th/95th perc\nMean',
+                    xx, yy - .1, '5th/95th\nMean',
                     ha="center", va="top", color='k', fontsize='small')
                 
             else:
-                ax.text(xx, yy - .35, '{:.1f}%'.format(
+                ax.text(xx, yy - .4, '{:.1f}%'.format(
                     np.around(ds['inhomogeneity'].sel(percentile=percentile, window=window), 1)), 
                         ha='center', va='top', color='k', fontweight='bold', fontsize='small')
                 
                 ax.text(
-                    xx, yy - .05, '{:.1f}%/{:.1f}%\n{:.1f}%'.format(
+                    xx, yy - .1, '{:.1f}%/{:.1f}%\n{:.1f}%'.format(
                         ds['frequency'].sel(aggregation=5, percentile=percentile, window=window),
                         ds['frequency'].sel(aggregation=95, percentile=percentile, window=window),
                         ds['frequency'].sel(aggregation=50, percentile=percentile, window=window),
