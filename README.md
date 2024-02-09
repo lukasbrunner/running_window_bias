@@ -1,6 +1,6 @@
 # Code for: Pitfalls in diagnosing temperature extremes
 
-2023 by Lukas Brunner (l.brunner@univie.ac.at) under a [MIT license](LICENSE)
+2024 by Lukas Brunner (l.brunner@univie.ac.at) under a [MIT license](LICENSE)
 
 **Abstract.** Worsening temperature extremes are among the most severe impacts of human-induced climate change. These extremes are often defined as rare events exceeding a specific percentile threshold within the distribution of daily maximum temperature. The percentile-based approach is chosen to follow regional and seasonal temperature variations so that extremes can occur globally and in all seasons, and frequently uses a running seasonal window to increase the sample size for short time periods. Here, we show that running window lengths used in many studies over the years introduce time-, region-, and dataset-depended biases which can lead to a striking underestimation of extreme frequency. We reveal that these biases originate from artificially mixing the mean seasonal cycle into the extreme threshold and propose a simple solution that essentially eliminates the bias. We then use the corrected dataset as a reference to show that the bias in the historical baseline can lead to an overestimation of future heatwave changes by as much as 25 % in some regions. Based on these results we argue that running seasonal windows should not be used without correction in the estimation of extremes and their impacts.
 
@@ -10,7 +10,7 @@
 
 ## Citation
 
-Brunner and Voigt (2023; submitted): Pitfalls in diagnosing temperature extremes. _Nat. Commun._, DOI: [TODO]()
+Brunner and Voigt (2024): Pitfalls in diagnosing temperature extremes. _Nat. Commun._, DOI: [TODO]()
 
 ## Requirements
 
