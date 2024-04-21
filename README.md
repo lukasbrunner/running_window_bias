@@ -10,7 +10,7 @@
 
 ## Citation
 
-Brunner and Voigt (2024): Pitfalls in diagnosing temperature extremes. _Nat. Commun._, DOI: [TODO]()
+Brunner and Voigt (2024): Pitfalls in diagnosing temperature extremes. _Nat. Commun._, DOI: [10.1038/s41467-024-46349-x](https://doi.org/10.1038/s41467-024-46349-x){:target="_blank"}
 
 ## Requirements
 
